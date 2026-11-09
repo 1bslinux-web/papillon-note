@@ -47,29 +47,51 @@ test suite.
 
 ## Features
 
+### Voice notes
+
 <img src="images/readme/gallery-notes.png" alt="Menu, recording, note list and transcript screens" width="100%">
 
-**Voice notes**
 - Hold **REC** to record 16 kHz mono WAV straight to microSD, up to an hour per note.
 - Recording starts before the screen and SD card are ready. A PSRAM capture buffer absorbs SD
   latency, so the first words aren't lost.
 - Tag a note when you let go (up to 20 custom tags), mark favourites, delete to a trash can.
 
-<img src="images/readme/gallery-portal.png" alt="QR portal, Wi-Fi setup, sync and playback screens" width="100%">
+<img src="images/readme/gallery-details.png" alt="Tag selection, settings, device info and sleep screens" width="100%">
 
-**Phone portal and transcription**
+### Web portal
+
+The device runs its own small website on your Wi-Fi. Open it on a computer or a phone to browse,
+listen to and edit your notes. Nothing goes through a cloud service.
+
+<img src="images/readme/gallery-web.png" alt="The note library in a desktop browser" width="100%">
+
+<img src="images/readme/gallery-phone.png" alt="Library, note detail, Wi-Fi setup and tags on a phone" width="100%">
+
 - *Settings → Transfer* shows a QR code on the e-paper. Scan it and the phone is logged in.
 - Search, filter by tag, play, download, edit transcripts, and bulk trash, restore or purge.
 - Per-session access code, HTTP Basic Auth and CSRF tokens. The portal closes itself after
   10 minutes without activity.
 - A setup access point for adding Wi-Fi networks and the API key without recompiling, and a
   button that copies the phone's clock to the device.
+- The portal interface is in Turkish; the device itself uses English.
+
+<sub>Portal pages rendered from the firmware's own HTML with fictional notes.</sub>
+
+### Transcription and sync
+
+<img src="images/readme/gallery-portal.png" alt="QR portal, Wi-Fi setup, sync and playback screens" width="100%">
+
 - Optional transcription through the OpenAI Whisper API, sent in chunks with retry and cancel.
-  A new transcript replaces the old one only after every part has arrived.
+- A new transcript replaces the old one only after every part has arrived, and the previous text
+  can be restored.
+- Notes can be played back on the device with pause and seek.
+
+### Mushroom Cat
 
 <img src="images/readme/gallery-companion.png" alt="Mushroom Cat home, care menu, profile and album" width="100%">
 
-**Mushroom Cat**
+<img src="images/readme/gallery-ages.png" alt="Mochi at five ages: baby, child, teen, adult and elder" width="100%">
+
 - Five life stages and 16 moods each: 80 one-bit portraits.
 - Food, water, cleanliness, sleep, play and training needs, care actions, a profile and an
   album of past lives. A `NEXT:` hint on the home screen always says what Mochi needs.
@@ -80,12 +102,15 @@ test suite.
 <img src="images/readme/moods-adult.png" alt="Sixteen moods of the adult Mushroom Cat" width="100%">
 </details>
 
+### Games
+
 <img src="images/readme/gallery-games.png" alt="Game menu, Snake, Dino Run and Pong" width="100%">
 
-**Games**: Snake, Dino Run and Pong, with saved high scores. A cached static scene and partial
-refresh keep them playable on e-paper.
+Snake, Dino Run and Pong, with saved high scores. A cached static scene and partial refresh keep
+them playable on e-paper.
 
-**Under the hood**
+### Under the hood
+
 - Own SPI driver for the SSD1681 panel with partial refresh, periodic cleanup, and a refresh
   waveform chosen from the board's SHTC3 temperature sensor.
 - Deep sleep with button wake, stuck-button protection, a timeout or "always on".
